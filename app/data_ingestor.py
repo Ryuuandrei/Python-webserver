@@ -62,5 +62,13 @@ class DataIngestor:
     def mean_by_category(self, question: str):
         def aux():
             return self.df.loc[self.df['Question'] == question] \
-                .groupby(['LocationDesc', 'StratificationCategory1'])['Stratification1'].mean().to_json()
+                .groupby(['LocationDesc', 'StratificationCategory1', 'Stratification1'])['Data_Value'].mean().to_json()
+        return aux
+    
+    def state_mean_by_category(self, question: str, state: str):
+        def aux():
+            return json.dumps({
+                state : json.loads(self.df.loc[(self.df['Question'] == question) & (self.df['LocationDesc'] == state)] \
+                .groupby(['StratificationCategory1', 'Stratification1'])['Data_Value'].mean().to_json())
+                })
         return aux

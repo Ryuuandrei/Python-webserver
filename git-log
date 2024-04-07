@@ -1,0 +1,29 @@
+commit 059b0a2c65fe241b44e50d4ef745b7f0a9e88350
+Author: Ryuuandrei <andreirusei@gmail.com>
+Date:   Thu Apr 4 17:06:29 2024 +0300
+
+    add comments
+
+commit 6a3758e10865988a7267eed944f3e3095c27b9e5
+Author: Ryuuandrei <andreirusei@gmail.com>
+Date:   Thu Apr 4 16:52:29 2024 +0300
+
+    add unittesting
+
+commit b207e222ffd1bd84bcfe43a3556099bf10d093f0
+Author: Ryuuandrei <andreirusei@gmail.com>
+Date:   Thu Apr 4 13:41:09 2024 +0300
+
+    add logging
+
+commit a758c7903256bc95bc140e85adb6cf3b5b8863d3
+Author: Ryuuandrei <andreirusei@gmail.com>
+Date:   Wed Apr 3 23:12:43 2024 +0300
+
+    add mean operations
+
+commit f6c9c3610676e56f22797c76604d9e62361966de
+Author: Ryuuandrei <andreirusei@gmail.com>
+Date:   Tue Apr 2 08:25:20 2024 +0300
+
+    start proj

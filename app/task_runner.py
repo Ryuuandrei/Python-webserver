@@ -3,7 +3,7 @@ Module for the ThreadPool and TaskRunner classes.
 """
 from queue import Queue
 from threading import Thread
-from os import environ, cpu_count
+from os import environ, cpu_count, path, makedirs
 
 class ThreadPool:
     """
@@ -31,6 +31,9 @@ class ThreadPool:
             self.num_threads = environ.get('TP_NUM_OF_THREADS')
         else:
             self.num_threads = cpu_count()
+
+        if not path.exists('results'):
+            makedirs('results')
 
         self.queue = Queue()
         self.threads = [TaskRunner(self.tasks, self.queue) for i in range(self.num_threads)]

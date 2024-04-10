@@ -116,7 +116,9 @@ class DataIngestor:
         Returns:
             str: A JSON string containing the worst 5 locations and their average data values.
         """
-        return lambda : self.d_f.loc[self.d_f['Question'] == question] \
+        return lambda : self.d_f.loc[(self.d_f['Question'] == question)
+                                   & (self.d_f['YearStart'] >= 2011)
+                                   & (self.d_f['YearEnd'] <= 2022)] \
             .groupby('LocationDesc')['Data_Value'].mean() \
         .sort_values(ascending=(question in self.questions_best_is_max)).head(5).to_json()
 

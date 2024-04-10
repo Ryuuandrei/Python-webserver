@@ -46,18 +46,18 @@ def get_response(job_id):
 
     """
     if webserver.shutdown:
-        webserver.logger.error(f'{request.method} {request.url} - server down')
+        webserver.logger.error('%s %s - server down', request.method, request.url)
         return jsonify({"status": "server down"})
 
-    webserver.logger.info(f'{request.method} {request.url}')
+    webserver.logger.info('%s %s', request.method, request.url)
 
     if int(job_id) > webserver.job_counter:
         return jsonify({"status": "error",
                         "reason" : "Invalid job_id"})
 
-    # Check if job_id is done and return the result
     try:
         with open(f'./results/{job_id}', 'r', encoding='utf-8') as f_in:
+
             return jsonify({
                 'status': 'done',
                 'data': json.load(f_in)
@@ -76,10 +76,10 @@ def states_mean_request():
         A JSON response containing the status of the request and the job ID.
     """
     if webserver.shutdown:
-        webserver.logger.error(f'{request.method} {request.url} - server down')
+        webserver.logger.error('%s %s - server down', request.method, request.url)
         return jsonify({"status": "server down"})
 
-    webserver.logger.info(f'{request.method} {request.url} {request.json}')
+    webserver.logger.info('%s %s %s', request.method, request.url, request.json)
 
     data = request.json
 
@@ -108,10 +108,10 @@ def state_mean_request():
         None
     """
     if webserver.shutdown:
-        webserver.logger.error(f'{request.method} {request.url} - server down')
+        webserver.logger.error('%s %s - server down', request.method, request.url)
         return jsonify({"status": "server down"})
 
-    webserver.logger.info(f'{request.method} {request.url} {request.json}')
+    webserver.logger.info('%s %s %s', request.method, request.url, request.json)
 
     data = request.json
 
@@ -133,10 +133,10 @@ def best5_request():
         A JSON response containing the status of the request and the job ID.
     """
     if webserver.shutdown:
-        webserver.logger.error(f'{request.method} {request.url} - server down')
+        webserver.logger.error('%s %s - server down', request.method, request.url)
         return jsonify({"status": "server down"})
 
-    webserver.logger.info(f'{request.method} {request.url} {request.json}')
+    webserver.logger.info('%s %s %s', request.method, request.url, request.json)
 
     data = request.json
 
@@ -163,10 +163,10 @@ def worst5_request():
         A JSON response containing the status and job_id of the task.
     """
     if webserver.shutdown:
-        webserver.logger.error(f'{request.method} {request.url} - server down')
+        webserver.logger.error('%s %s - server down', request.method, request.url)
         return jsonify({"status": "server down"})
 
-    webserver.logger.info(f'{request.method} {request.url} {request.json}')
+    webserver.logger.info('%s %s %s', request.method, request.url, request.json)
 
     data = request.json
 
@@ -187,10 +187,10 @@ def global_mean_request():
         A JSON response containing the status of the request and the job ID.
     """
     if webserver.shutdown:
-        webserver.logger.error(f'{request.method} {request.url} - server down')
+        webserver.logger.error('%s %s - server down', request.method, request.url)
         return jsonify({"status": "server down"})
 
-    webserver.logger.info(f'{request.method} {request.url} {request.json}')
+    webserver.logger.info('%s %s %s', request.method, request.url, request.json)
 
     data = request.json
 
@@ -211,10 +211,10 @@ def diff_from_mean_request():
         A JSON response containing the status of the job and the job ID.
     """
     if webserver.shutdown:
-        webserver.logger.error(f'{request.method} {request.url} - server down')
+        webserver.logger.error('%s %s - server down', request.method, request.url)
         return jsonify({"status": "server down"})
 
-    webserver.logger.info(f'{request.method} {request.url} {request.json}')
+    webserver.logger.info('%s %s %s', request.method, request.url, request.json)
     data = request.json
 
     webserver.tasks_runner.queue.put((webserver.job_counter,
@@ -241,10 +241,10 @@ def state_diff_from_mean_request():
         None
     """
     if webserver.shutdown:
-        webserver.logger.error(f'{request.method} {request.url} - server down')
+        webserver.logger.error('%s %s - server down', request.method, request.url)
         return jsonify({"status": "server down"})
 
-    webserver.logger.info(f'{request.method} {request.url} {request.json}')
+    webserver.logger.info('%s %s %s', request.method, request.url, request.json)
 
     data = request.json
 
@@ -265,10 +265,10 @@ def mean_by_category_request():
         A JSON response containing the status of the request and the job ID.
     """
     if webserver.shutdown:
-        webserver.logger.error(f'{request.method} {request.url} - server down')
+        webserver.logger.error('%s %s - server down', request.method, request.url)
         return jsonify({"status": "server down"})
 
-    webserver.logger.info(f'{request.method} {request.url} {request.json}')
+    webserver.logger.info('%s %s %s', request.method, request.url, request.json)
 
     data = request.json
 
@@ -289,10 +289,10 @@ def state_mean_by_category_request():
         A JSON response containing the status of the request and the job ID.
     """
     if webserver.shutdown:
-        webserver.logger.error(f'{request.method} {request.url} - server down')
+        webserver.logger.error('%s %s - server down', request.method, request.url)
         return jsonify({"status": "server down"})
 
-    webserver.logger.info(f'{request.method} {request.url} {request.json}')
+    webserver.logger.info('%s %s %s', request.method, request.url, request.json)
 
     data = request.json
 
@@ -316,7 +316,7 @@ def graceful_shutdown():
     Returns:
         A JSON response indicating the status of the server shutdown.
     """
-    webserver.logger.info(f'{request.method} {request.url}')
+    webserver.logger.info('%s %s', request.method, request.url)
 
     webserver.shutdown = True
     webserver.tasks_runner.shutdown()
@@ -332,10 +332,10 @@ def jobs():
         A JSON response containing the status of the jobs.
     """
     if webserver.shutdown:
-        webserver.logger.error(f'{request.method} {request.url} - server down')
+        webserver.logger.error('%s %s - server down', request.method, request.url)
         return jsonify({"status": "server down"})
 
-    webserver.logger.info(f'{request.method} {request.url}')
+    webserver.logger.info('%s %s',request.method, request.url)
 
     return jsonify({
         'status': 'done',

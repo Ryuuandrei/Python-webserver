@@ -95,7 +95,7 @@ class TestWebserver(unittest.TestCase):
         d_i = DataIngestor("unittests/test.csv")
         question = "Percent of adults aged 18 years and older who have an overweight classification"
         with open("unittests/input/diff_from_mean.json", "r", encoding='utf-8') as f_in:
-            self.assertEqual(f_in.read(), d_i.d_iff_from_mean(question)())
+            self.assertEqual(f_in.read(), d_i.diff_from_mean(question)())
 
     def test_state_diff_from_mean(self):
         """
@@ -106,7 +106,7 @@ class TestWebserver(unittest.TestCase):
         question = "Percent of adults aged 18 years and older who have an overweight classification"
         state = "Wisconsin"
         with open("unittests/input/state_diff_from_mean.json", "r", encoding='utf-8') as f_in:
-            self.assertEqual(f_in.read(), d_i.state_d_iff_from_mean(question, state)())
+            self.assertEqual(f_in.read(), d_i.state_diff_from_mean(question, state)())
 
     def test_mean_by_category(self):
         """
